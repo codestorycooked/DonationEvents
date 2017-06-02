@@ -1,0 +1,5 @@
+c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\bin\Debug\ServerData.dacpac
+c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\bin\Debug\ServerData.dll
+c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\bin\Debug\ServerData.pdb
+c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\obj\Debug\ServerData.dll
+c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\obj\Debug\ServerData.pdb
