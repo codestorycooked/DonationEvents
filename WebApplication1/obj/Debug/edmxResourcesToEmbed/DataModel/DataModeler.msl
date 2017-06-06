@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventsMasterModelStoreContainer" CdmEntityContainer="EventsMasterEntities">
+    <EntitySetMapping Name="C__RefactorLog">
+      <EntityTypeMapping TypeName="EventsMasterModel.C__RefactorLog">
+        <MappingFragment StoreEntitySet="__RefactorLog">
+          <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonationRanges">
+      <EntityTypeMapping TypeName="EventsMasterModel.DonationRange">
+        <MappingFragment StoreEntitySet="DonationRange">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="DonationAmount" ColumnName="DonationAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="EventsMasterModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+          <ScalarProperty Name="DonatedValue" ColumnName="DonatedValue" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDonations">
+      <EntityTypeMapping TypeName="EventsMasterModel.UserDonation">
+        <MappingFragment StoreEntitySet="UserDonations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="PayPalResponse" ColumnName="PayPalResponse" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

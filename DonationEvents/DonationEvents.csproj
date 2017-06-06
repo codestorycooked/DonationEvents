@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B6F508B6-9E22-46A3-9614-10C2501933F6}</ProjectGuid>
+    <ProjectGuid>{729D6552-EC14-45D9-A9A0-B9EFD351548D}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -49,6 +49,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PayPal, Version=1.8.0.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.8.0\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -114,9 +120,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -195,32 +198,30 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DataModel\C__RefactorLog.cs">
-      <DependentUpon>DataModeler.tt</DependentUpon>
+    <Compile Include="Controllers\UserDonationsController.cs" />
+    <Compile Include="C__RefactorLog.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\DataModeler.Context.cs">
+    <Compile Include="DataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataModeler.Context.tt</DependentUpon>
+      <DependentUpon>DataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\DataModeler.cs">
+    <Compile Include="DataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataModeler.tt</DependentUpon>
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\DataModeler.Designer.cs">
+    <Compile Include="DataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataModeler.edmx</DependentUpon>
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\DonationRange.cs">
-      <DependentUpon>DataModeler.tt</DependentUpon>
+    <Compile Include="DonationRange.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\Event.cs">
-      <DependentUpon>DataModeler.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataModel\UserDonation.cs">
-      <DependentUpon>DataModeler.tt</DependentUpon>
+    <Compile Include="Event.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,19 +231,22 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UserDonation.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DataModel\DataModeler.Context.tt">
+    <Content Include="DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataModeler.edmx</DependentUpon>
-      <LastGenOutput>DataModeler.Context.cs</LastGenOutput>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataModel\DataModeler.tt">
+    <Content Include="DataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataModeler.edmx</DependentUpon>
-      <LastGenOutput>DataModeler.cs</LastGenOutput>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -253,12 +257,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="DataModel\DataModeler.edmx">
+    <EntityDeploy Include="DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataModeler.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DataModel\DataModeler.edmx.diagram">
-      <DependentUpon>DataModeler.edmx</DependentUpon>
+    <Content Include="DataModel.edmx.diagram">
+      <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -271,9 +275,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -317,6 +319,12 @@
     <Content Include="Views\DonationRanges\Details.cshtml" />
     <Content Include="Views\DonationRanges\Edit.cshtml" />
     <Content Include="Views\DonationRanges\Index.cshtml" />
+    <Content Include="Views\UserDonations\Create.cshtml" />
+    <Content Include="Views\UserDonations\Delete.cshtml" />
+    <Content Include="Views\UserDonations\Details.cshtml" />
+    <Content Include="Views\UserDonations\Edit.cshtml" />
+    <Content Include="Views\UserDonations\Index.cshtml" />
+    <Content Include="Views\Events\Donate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -355,9 +363,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49923</DevelopmentServerPort>
+          <DevelopmentServerPort>49261</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49923/</IISUrl>
+          <IISUrl>http://localhost:49261/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

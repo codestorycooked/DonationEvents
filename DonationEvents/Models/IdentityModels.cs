@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace WebApplication1.Models
+namespace DonationEvents.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -29,9 +29,5 @@ namespace WebApplication1.Models
         {
             return new ApplicationDbContext();
         }
-
-    public System.Data.Entity.DbSet<WebApplication1.DataModel.Event> Events { get; set; }
-
-    public System.Data.Entity.DbSet<WebApplication1.DataModel.DonationRange> DonationRanges { get; set; }
-  }
+    }
 }

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventsMasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DonationRange">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="DonationAmount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_DonationRange_Events" FromRole="DonationRange" ToRole="Events" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EventDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonatedValue" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="DonationRanges" Relationship="Self.FK_DonationRange_Events" FromRole="Events" ToRole="DonationRange" />
+    <NavigationProperty Name="UserDonations" Relationship="Self.FK_UserDonations_Events" FromRole="Events" ToRole="UserDonations" />
+  </EntityType>
+  <EntityType Name="UserDonation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Guid" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="PayPalResponse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_UserDonations_Events" FromRole="UserDonations" ToRole="Events" />
+  </EntityType>
+  <Association Name="FK_DonationRange_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="DonationRange" Type="Self.DonationRange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DonationRange">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDonations_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="UserDonations" Type="Self.UserDonation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserDonations">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EventsMasterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+    <EntitySet Name="DonationRanges" EntityType="Self.DonationRange" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="UserDonations" EntityType="Self.UserDonation" />
+    <AssociationSet Name="FK_DonationRange_Events" Association="Self.FK_DonationRange_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="DonationRange" EntitySet="DonationRanges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDonations_Events" Association="Self.FK_UserDonations_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="UserDonations" EntitySet="UserDonations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

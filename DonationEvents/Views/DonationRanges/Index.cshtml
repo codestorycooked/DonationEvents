@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication1.DataModel.DonationRange>
+﻿@model IEnumerable<DonationEvents.DonationRange>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Event.EventName)
+            @Html.DisplayNameFor(model => model.DonationAmount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DonationAmount)
+            @Html.DisplayNameFor(model => model.Event.EventName)
         </th>
         <th></th>
     </tr>
@@ -23,10 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Event.EventName)
+            @Html.DisplayFor(modelItem => item.DonationAmount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DonationAmount)
+            @Html.DisplayFor(modelItem => item.Event.EventName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

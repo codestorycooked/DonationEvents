@@ -6,14 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication1.DataModel;
-using WebApplication1.Models;
+using DonationEvents;
 
-namespace WebApplication1.Controllers
+namespace DonationEvents.Controllers
 {
     public class DonationRangesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private EventsMasterEntities db = new EventsMasterEntities();
 
         // GET: DonationRanges
         public ActionResult Index()
