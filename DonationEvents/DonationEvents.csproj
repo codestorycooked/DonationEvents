@@ -193,12 +193,28 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DonationRangesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserDonations1Controller.cs" />
     <Compile Include="Controllers\UserDonationsController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="C__RefactorLog.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -264,6 +280,7 @@
     <Content Include="DataModel.edmx.diagram">
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\DonationEventsBigpush - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -325,6 +342,15 @@
     <Content Include="Views\UserDonations\Edit.cshtml" />
     <Content Include="Views\UserDonations\Index.cshtml" />
     <Content Include="Views\Events\Donate.cshtml" />
+    <Content Include="Views\Events\Thankyou.cshtml" />
+    <Content Include="Views\Events\Cancelled.cshtml" />
+    <Content Include="Views\Events\Failure.cshtml" />
+    <Content Include="Views\UserDonations1\Create.cshtml" />
+    <Content Include="Views\UserDonations1\Delete.cshtml" />
+    <Content Include="Views\UserDonations1\Details.cshtml" />
+    <Content Include="Views\UserDonations1\Edit.cshtml" />
+    <Content Include="Views\UserDonations1\Index.cshtml" />
+    <Content Include="Views\Events\AlreadyDonated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

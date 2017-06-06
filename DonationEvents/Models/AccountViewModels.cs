@@ -109,4 +109,11 @@ namespace DonationEvents.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class EventDonationViewModel {
+        public Event events { get; set; }
+        public  IEnumerable<DonationRange> ranges { get; set; }
+        public int DonationValue { get; set; }
+        public int DonationID { get; set; }
+    }
 }

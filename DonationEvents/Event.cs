@@ -24,7 +24,6 @@ namespace DonationEvents
         public int Id { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
-        public Nullable<decimal> DonatedValue { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

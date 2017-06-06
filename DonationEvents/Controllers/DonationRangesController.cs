@@ -10,6 +10,7 @@ using DonationEvents;
 
 namespace DonationEvents.Controllers
 {
+    [Authorize]
     public class DonationRangesController : Controller
     {
         private EventsMasterEntities db = new EventsMasterEntities();

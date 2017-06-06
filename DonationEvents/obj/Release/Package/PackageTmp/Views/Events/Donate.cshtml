@@ -1,0 +1,43 @@
+﻿@model DonationEvents.Models.EventDonationViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <h4>Event</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.events.EventName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.events.EventName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.events.EventDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.events.EventDescription)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.DonatedValue)*@
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.DonatedValue)*@
+            </dd>
+            @Html.EditorFor(model => model.DonationValue)
+            @Html.HiddenFor(model => model.events.Id, new { @Name = "eventID", @id = "eventID" })<br />
+            <input type="submit" value="Pay" class="btn btn-default" />
+        </dl>
+    </div>
+}
