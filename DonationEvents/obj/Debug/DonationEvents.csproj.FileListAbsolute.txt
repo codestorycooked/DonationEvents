@@ -95,3 +95,4 @@ C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\DonationE
 C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\DonationEvents\obj\Debug\DonationEvents.pdb
 C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\DonationEvents\bin\PayPal.dll
 C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\DonationEvents\bin\PayPal.xml
+C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\DonationEvents\obj\Debug\DonationEvents.csprojResolveAssemblyReference.cache

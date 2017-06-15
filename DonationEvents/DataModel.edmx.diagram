@@ -11,6 +11,14 @@
         <EntityTypeShape EntityType="EventsMasterModel.UserDonation" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="EventsMasterModel.FK_DonationRange_Events" ManuallyRouted="false" />
         <AssociationConnector Association="EventsMasterModel.FK_UserDonations_Events" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EventsMasterModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="EventsMasterModel.AspNetRole" Width="1.5" PointX="5.75" PointY="4.5" />
+        <EntityTypeShape EntityType="EventsMasterModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="3" />
+        <EntityTypeShape EntityType="EventsMasterModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="5.75" />
+        <EntityTypeShape EntityType="EventsMasterModel.AspNetUser" Width="1.5" PointX="8" PointY="3.375" />
+        <AssociationConnector Association="EventsMasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EventsMasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EventsMasterModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

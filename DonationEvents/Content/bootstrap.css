@@ -1,4 +1,4 @@
-/* NUGET: BEGIN LICENSE TEXT
+﻿/* NUGET: BEGIN LICENSE TEXT
  *
  * Microsoft grants you the right to use these script files for the sole
  * purpose of either: (i) interacting through your browser with the Microsoft
@@ -20,7 +20,7 @@
  */
 
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
-
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
 article,
 aside,
 details,
@@ -52,13 +52,14 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
+  font-family: 'Roboto Slab', serif;
 }
 
 a:focus {
