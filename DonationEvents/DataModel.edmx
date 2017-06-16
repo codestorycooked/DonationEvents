@@ -5,12 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EventsMasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
         <EntityType Name="DonationRange">
           <Key>
             <PropertyRef Name="Id" />
@@ -25,7 +19,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EventDescription" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EventDescription" Type="ntext" Nullable="false" />
           <Property Name="DateAdded" Type="datetime" />
           <Property Name="PixelLotID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Duration" Type="float" Nullable="false" />
@@ -49,9 +43,12 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventID" Type="int" />
           <Property Name="Viewed" Type="bit" />
+          <Property Name="userID" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK_DonationRange_Events">
-          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="DonationRange" Type="Self.DonationRange" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Events">
@@ -63,7 +60,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserDonations_Events">
-          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UserDonations" Type="Self.UserDonations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Events">
@@ -75,7 +74,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ViewedEvents_Evens">
-          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ViewedEvents" Type="Self.ViewedEvents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Events">
@@ -87,7 +88,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EventsMasterModelStoreContainer">
-          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonationRange" EntityType="Self.DonationRange" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDonations" EntityType="Self.UserDonations" Schema="dbo" store:Type="Tables" />
@@ -144,25 +144,24 @@
           </AssociationSet>
           <EntitySet Name="ViewedEvents" EntityType="EventsMasterModel.ViewedEvent" />
           <AssociationSet Name="FK_ViewedEvents_Evens" Association="EventsMasterModel.FK_ViewedEvents_Evens">
-            <End EntitySet="Events" Role="Event" />
-            <End EntitySet="ViewedEvents" Role="ViewedEvent" />
+            <End Role="Event" EntitySet="Events" />
+            <End Role="ViewedEvent" EntitySet="ViewedEvents" />
           </AssociationSet>
-          <EntitySet Name="C__RefactorLog" EntityType="EventsMasterModel.C__RefactorLog" />
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EventDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="PixelLotID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="Double" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DonationRanges" Relationship="EventsMasterModel.FK_DonationRange_Events" FromRole="Event" ToRole="DonationRange" />
           <NavigationProperty Name="UserDonations" Relationship="EventsMasterModel.FK_UserDonations_Events" FromRole="Event" ToRole="UserDonation" />
-          <Property Name="PixelLotID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Duration" Type="Double" Nullable="false" />
           <NavigationProperty Name="ViewedEvents" Relationship="EventsMasterModel.FK_ViewedEvents_Evens" FromRole="Event" ToRole="ViewedEvent" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_DonationRange_Events">
           <End Type="EventsMasterModel.Event" Role="Event" Multiplicity="0..1" />
@@ -192,14 +191,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventID" Type="Int32" />
           <Property Name="Viewed" Type="Boolean" />
+          <Property Name="userID" Type="Guid" />
           <NavigationProperty Name="Event" Relationship="EventsMasterModel.FK_ViewedEvents_Evens" FromRole="ViewedEvent" ToRole="Event" />
         </EntityType>
         <Association Name="FK_ViewedEvents_Evens">
-          <End Type="EventsMasterModel.Event" Multiplicity="0..1" Role="Event" />
-          <End Type="EventsMasterModel.ViewedEvent" Multiplicity="*" Role="ViewedEvent" />
+          <End Type="EventsMasterModel.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="EventsMasterModel.ViewedEvent" Role="ViewedEvent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Event">
               <PropertyRef Name="Id" />
@@ -209,13 +209,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="C__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="Guid" Nullable="false" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -258,20 +252,14 @@
           <EntitySetMapping Name="ViewedEvents">
             <EntityTypeMapping TypeName="EventsMasterModel.ViewedEvent">
               <MappingFragment StoreEntitySet="ViewedEvents">
+                <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="Viewed" ColumnName="Viewed" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="EventsMasterModel.C__RefactorLog">
-              <MappingFragment StoreEntitySet="__RefactorLog">
-                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

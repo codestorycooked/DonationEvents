@@ -6,5 +6,5 @@
     [PayPalResponse] NVARCHAR(50) NULL, 
     [TransactionID] NVARCHAR(50) NULL, 
     [status] NVARCHAR(50) NULL, 
-    CONSTRAINT [FK_UserDonations_Events] FOREIGN KEY (EventID) REFERENCES Events(Id)
+    CONSTRAINT [FK_UserDonations_Events] FOREIGN KEY (EventID) REFERENCES Events(Id)  ON DELETE CASCADE
 )

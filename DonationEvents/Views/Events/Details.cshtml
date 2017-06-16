@@ -5,12 +5,23 @@
 }
 
 <h2>@Model.EventName</h2>
-@Model.PixelLotID
+<div class="text-center">@Html.ActionLink("Donate Now", "Donate", new { id = Model.Id }, new { @class = "btn btn-danger pull-right" })</div><br /><br />
 <div>
-    
-  <iframe style="height:500px;width:100%" src="https://club.pixellot.tv/widget/dbbe9f5315a7713793ba7c8d60d82bcf36f84bb390616f9f/player?eventId=@Model.PixelLotID"></iframe>
+
+    <iframe style="height:500px;width:100%" src="https://club.pixellot.tv/widget/dbbe9f5315a7713793ba7c8d60d82bcf36f84bb390616f9f/player?eventId=@Model.PixelLotID"></iframe>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<p>@Model.EventDescription</p>
+@{
+
+    var milliseconds = Model.Duration * 60000;
+    var url = Url.Action("UpdateViewCount", "Events", new { id = Model.Id },protocol:"http");
+}
+
+@section Scripts{
+    <script>
+        setTimeout(function(){
+            window.location='@url';
+
+            }, @milliseconds);
+    </script>
+}

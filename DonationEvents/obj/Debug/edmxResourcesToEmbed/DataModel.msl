@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventsMasterModelStoreContainer" CdmEntityContainer="EventsMasterEntities">
+    <EntitySetMapping Name="DonationRanges">
+      <EntityTypeMapping TypeName="EventsMasterModel.DonationRange">
+        <MappingFragment StoreEntitySet="DonationRange">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="DonationAmount" ColumnName="DonationAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDonations">
+      <EntityTypeMapping TypeName="EventsMasterModel.UserDonation">
+        <MappingFragment StoreEntitySet="UserDonations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="PayPalResponse" ColumnName="PayPalResponse" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="EventsMasterModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="PixelLotID" ColumnName="PixelLotID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+          <ScalarProperty Name="EventName" ColumnName="EventName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewedEvents">
+      <EntityTypeMapping TypeName="EventsMasterModel.ViewedEvent">
+        <MappingFragment StoreEntitySet="ViewedEvents">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="Viewed" ColumnName="Viewed" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

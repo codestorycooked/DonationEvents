@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventsMasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DonationRange">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="DonationAmount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Event" Relationship="EventsMasterModel.FK_DonationRange_Events" FromRole="DonationRange" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="UserDonation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Guid" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="PayPalResponse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Event" Relationship="EventsMasterModel.FK_UserDonations_Events" FromRole="UserDonation" ToRole="Event" />
+  </EntityType>
+  <EntityContainer Name="EventsMasterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DonationRanges" EntityType="Self.DonationRange" />
+    <EntitySet Name="UserDonations" EntityType="Self.UserDonation" />
+    <EntitySet Name="Events" EntityType="EventsMasterModel.Event" />
+    <AssociationSet Name="FK_DonationRange_Events" Association="EventsMasterModel.FK_DonationRange_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="DonationRange" EntitySet="DonationRanges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDonations_Events" Association="EventsMasterModel.FK_UserDonations_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="UserDonation" EntitySet="UserDonations" />
+    </AssociationSet>
+    <EntitySet Name="ViewedEvents" EntityType="EventsMasterModel.ViewedEvent" />
+    <AssociationSet Name="FK_ViewedEvents_Evens" Association="EventsMasterModel.FK_ViewedEvents_Evens">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="ViewedEvent" EntitySet="ViewedEvents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EventDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateAdded" Type="DateTime" Precision="3" />
+    <Property Name="PixelLotID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="Double" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DonationRanges" Relationship="EventsMasterModel.FK_DonationRange_Events" FromRole="Event" ToRole="DonationRange" />
+    <NavigationProperty Name="UserDonations" Relationship="EventsMasterModel.FK_UserDonations_Events" FromRole="Event" ToRole="UserDonation" />
+    <NavigationProperty Name="ViewedEvents" Relationship="EventsMasterModel.FK_ViewedEvents_Evens" FromRole="Event" ToRole="ViewedEvent" />
+  </EntityType>
+  <Association Name="FK_DonationRange_Events">
+    <End Type="EventsMasterModel.Event" Role="Event" Multiplicity="0..1" />
+    <End Type="EventsMasterModel.DonationRange" Role="DonationRange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DonationRange">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDonations_Events">
+    <End Type="EventsMasterModel.Event" Role="Event" Multiplicity="0..1" />
+    <End Type="EventsMasterModel.UserDonation" Role="UserDonation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserDonation">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ViewedEvent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="Viewed" Type="Boolean" />
+    <Property Name="userID" Type="Guid" />
+    <NavigationProperty Name="Event" Relationship="EventsMasterModel.FK_ViewedEvents_Evens" FromRole="ViewedEvent" ToRole="Event" />
+  </EntityType>
+  <Association Name="FK_ViewedEvents_Evens">
+    <End Type="EventsMasterModel.Event" Role="Event" Multiplicity="0..1" />
+    <End Type="EventsMasterModel.ViewedEvent" Role="ViewedEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ViewedEvent">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

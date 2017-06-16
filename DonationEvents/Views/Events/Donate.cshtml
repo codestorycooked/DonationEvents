@@ -9,36 +9,146 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div>
-        <h4>Event</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.events.EventName)
-            </dt>
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Event Details</h3>
+            <hr />
+            <div>
+              
+                <h4 class="control-label"> @Model.events.EventName</h4>
 
-            <dd>
-                @Html.DisplayFor(model => model.events.EventName)
-            </dd>
+                <p class="control-label text-justify" style="text-align:justify"> @Model.events.EventDescription</p>
+                @Html.ActionLink("View Video", "PreviewVideo", "Events", new { id = @Model.events.PixelLotID, eventID = Model.events.Id }, null)
 
-            <dt>
-                @Html.DisplayNameFor(model => model.events.EventDescription)
-            </dt>
+            </div>
+            <h3>Select an Amount</h3>
+            <hr />
+            <div>
+                @{
+                    var a = ViewBag.donationValue.ToString().Split(',');
+                }
+                @foreach (var item in a)
+                {
+                    <input class="btn btn-primary btn-lg" type="button" value="@item $" onclick="setAmount('@item')" />
+                }
+                <br /><br />
+                <div class="form-group">
+                    @Html.Label("Your Donation : ", new { @class = "control-label col-md-3" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DonationValue, new { htmlAttributes = new { @class = "form-control" } })
+                       <p class="text-danger"> @ViewBag.Error</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Pay using PayPal ", new { @class = "control-label col-md-3", style = "padding-top:30px;" })
+                <div class="col-md-8">
+                    @Html.HiddenFor(model => model.events.Id, new { @Name = "eventID", @id = "eventID" })<br />
+                    <button class="btn btn-default"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal" /></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>Questions</h3>
+            <dl data-accordion-list="" class="accordion">
+                <dt>
+                    <a href="javascript:;">Is my donation secure?</a>
+                </dt>
+                <dd>
+                    <p data-ng-show="SC.isNfg" class="ng-hide">
+                        Absolutely. Classy is processing donations with Network for Good, a Better Business Bureau Wise
+                        Giving Alliance accredited charity that meets all of the BBB standards for charity accountability (BBB).
+                        Classy and Network for Good use industry-leading Secure Sockets Layer (SSL) technology. For further
+                        details check out the <a href="http://www1.networkforgood.org/privacy" target="_blank">Privacy Policy</a>.
+                        <img src="https://e56e1c9cfe905036b1bc-18ddab263895603932d74f683170c410.ssl.cf2.rackcdn.com/nfgLogo.png" alt="Network for Good Logo">
+                    </p>
+                    <p data-ng-show="!SC.isNfg" class="">
+                        Absolutely. The security and confidentiality of your information is our highest priority. We use
+                        industry-standard SSL (secure socket layer) technology to protect your information and provide a safe
+                        and secure environment for online donations. We will not sell, trade or share your personal information
+                        with anyone else, nor send donor mailings on behalf of other organizations, and we will only share
+                        personal information if you have given us specific permission to do so.
+                    </p>
+                </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.events.EventDescription)
-            </dd>
+                <dt data-ng-show="!SC.isNfg &amp;&amp; donation.isSCPayPal" class="ng-hide">
+                    <a href="javascript:;">What shows up on my statement?</a>
+                </dt>
+                <dd data-ng-show="!SC.isNfg &amp;&amp; donation.isSCPayPal" class="ng-hide">
+                    <p class="ng-binding">
+                        The donation you are making today will show up on your credit card statement as
+                        <strong>DONATION</strong>. BIG PUSH has partnered with fundraising company, Classy, to process our
+                        online donations.  Please visit
+                        <a href="https://www.classy.org/charge" target="_blank">classy.org/charge</a> to learn more about Classy's donation processing system.
+                    </p>
+                </dd>
 
-            <dt>
-                @*@Html.DisplayNameFor(model => model.DonatedValue)*@
-            </dt>
+                <dt data-ng-show="SC.charity.id != 8246 &amp;&amp; SC.charity.id != 8247 &amp;&amp; SC.pid != 8984 &amp;&amp; SC.questions.taxText != ''" class="">
+                    <a href="javascript:;">Is my donation tax-deductible?</a>
+                </dt>
+                <dd data-ng-show="SC.charity.id != 8246 &amp;&amp; SC.charity.id != 8247 &amp;&amp; SC.pid != 8984 &amp;&amp; SC.questions.taxText != ''" class="">
+                    <p data-ng-bind-html="SC.questions.taxText" class="ng-binding">Yes. BIG PUSH is a 501(c)3 tax-exempt organization and your donation is tax-deductible within the guidelines of U.S. law. To claim a donation as a deduction on your U.S. taxes, please keep your email donation receipt as your official record. We'll send it to you upon successful completion of your donation.</p>
+                </dd>
 
-            <dd>
-                @*@Html.DisplayFor(model => model.DonatedValue)*@
-            </dd>
-            @Html.EditorFor(model => model.DonationValue)
-            @Html.HiddenFor(model => model.events.Id, new { @Name = "eventID", @id = "eventID" })<br />
-            <input type="submit" value="Pay" class="btn btn-default" />
-        </dl>
+                <!-- ngRepeat: faq in SC.faqs -->
+
+                <dt>
+                    <a href="javascript:;">Do I get a receipt?</a>
+                </dt>
+                <dd>
+                    <p>
+                        A donation receipt will be sent to you at the email address you provide on this form. Please be sure
+                        to keep a copy of your receipt for tax purposes.
+                        <span data-ng-show="!SC.isNfg &amp;&amp; donation.recurringType != 'disabled'" class="">
+                            If you select a recurring donation, you will be
+                            sent an individual receipt each month when your donation is processed.
+                        </span>
+                    </p>
+                </dd>
+
+                <dt data-ng-show="SC.isNfg" class="ng-hide">
+                    <a href="javascript:;">What is Classy?</a>
+                </dt>
+                <dd data-ng-show="SC.isNfg" class="ng-hide">
+                    <p class="ng-binding">
+                        BIG PUSH and Network for Good have partnered with Classy to power our fundraising software. The Classy
+                        platform is a universally accepted method for fundraising.  You can learn more about Classy by visiting
+                        their website at <a href="https://www.classy.org">www.stayclassy.org</a>.
+                    </p>
+                </dd>
+
+                <dt data-ng-show="SC.isNfg" class="ng-hide">
+                    <a href="javascript:;">More Questions?</a>
+                </dt>
+                <dd data-ng-show="SC.isNfg" class="ng-hide">
+                    <p>
+                        Check out our donation frequently asked questions for more information.
+                        <a href="http://www.networkforgood.org/donationfaq" target="_blank">FAQs »</a>
+                    </p>
+                </dd>
+
+                <dt data-ng-show="SC.questions.custom.title != null" class="ng-hide">
+                    <a href="javascript:;" class="ng-binding"></a>
+                </dt>
+                <dd data-ng-show="SC.questions.custom.title != null" class="ng-hide">
+                    <p data-ng-bind-html="SC.questions.custom.content" class="ng-binding"></p>
+                </dd>
+
+
+            </dl>
+        </div>
     </div>
+                    }
+
+@section Scripts{
+    <script>
+        var setAmount = function setAmount(a) {
+            if (a === "Other Amount") {
+                $("#DonationValue").val(0);
+            }
+            else {
+                $("#DonationValue").val(a);
+            }
+        }
+    </script>
 }

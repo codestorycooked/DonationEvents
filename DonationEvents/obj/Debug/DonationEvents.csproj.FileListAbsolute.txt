@@ -95,3 +95,4 @@ D:\sampleApps\DonationEvents\DonationEvents\bin\Microsoft.AI.WindowsServer.xml
 D:\sampleApps\DonationEvents\DonationEvents\bin\Microsoft.AI.Web.xml
 D:\sampleApps\DonationEvents\DonationEvents\obj\Debug\DonationEvents.dll
 D:\sampleApps\DonationEvents\DonationEvents\obj\Debug\DonationEvents.pdb
+D:\sampleApps\DonationEvents\DonationEvents\obj\Debug\DonationEvents.csprojResolveAssemblyReference.cache

@@ -29,6 +29,5 @@ namespace DonationEvents
         public virtual DbSet<UserDonation> UserDonations { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<ViewedEvent> ViewedEvents { get; set; }
-        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
     }
 }

@@ -1,0 +1,8 @@
+﻿
+@{
+    ViewBag.Title = "PreviewVideo";
+}
+
+<h2>Video Preview</h2>
+<div class="text-center">@Html.ActionLink("Donate Now", "Donate", new { id = ViewBag.eventID }, new { @class = "btn btn-danger pull-right" })</div><br /><br />
+<iframe style="height:500px;width:100%" src="https://club.pixellot.tv/widget/dbbe9f5315a7713793ba7c8d60d82bcf36f84bb390616f9f/player?eventId=@ViewBag.ID"></iframe>

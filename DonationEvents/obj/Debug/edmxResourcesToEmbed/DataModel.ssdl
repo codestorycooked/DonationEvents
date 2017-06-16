@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventsMasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DonationRange">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventID" Type="int" />
+    <Property Name="DonationAmount" Type="money" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EventDescription" Type="ntext" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="PixelLotID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Duration" Type="float" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserDonations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="uniqueidentifier" />
+    <Property Name="EventID" Type="int" />
+    <Property Name="PayPalResponse" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransactionID" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ViewedEvents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventID" Type="int" />
+    <Property Name="Viewed" Type="bit" />
+    <Property Name="userID" Type="uniqueidentifier" />
+  </EntityType>
+  <Association Name="FK_DonationRange_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DonationRange" Type="Self.DonationRange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DonationRange">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDonations_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserDonations" Type="Self.UserDonations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserDonations">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ViewedEvents_Evens">
+    <End Role="Events" Type="Self.Events" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ViewedEvents" Type="Self.ViewedEvents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ViewedEvents">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EventsMasterModelStoreContainer">
+    <EntitySet Name="DonationRange" EntityType="Self.DonationRange" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDonations" EntityType="Self.UserDonations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ViewedEvents" EntityType="Self.ViewedEvents" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DonationRange_Events" Association="Self.FK_DonationRange_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="DonationRange" EntitySet="DonationRange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDonations_Events" Association="Self.FK_UserDonations_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="UserDonations" EntitySet="UserDonations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ViewedEvents_Evens" Association="Self.FK_ViewedEvents_Evens">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="ViewedEvents" EntitySet="ViewedEvents" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

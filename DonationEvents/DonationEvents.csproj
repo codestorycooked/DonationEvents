@@ -201,9 +201,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserDonations1Controller.cs" />
     <Compile Include="Controllers\UserDonationsController.cs" />
-    <Compile Include="C__RefactorLog.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -257,6 +254,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\golf-backgrounds.jpg" />
     <Content Include="images\logobigputsh.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -270,7 +268,6 @@
     <Content Include="DataModel.edmx.diagram">
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\DonationEventsBigpush - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -343,9 +340,11 @@
     <Content Include="Views\EventManager\Details.cshtml" />
     <Content Include="Views\EventManager\Edit.cshtml" />
     <Content Include="Views\EventManager\Index.cshtml" />
+    <Content Include="Views\Events\PreviewVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

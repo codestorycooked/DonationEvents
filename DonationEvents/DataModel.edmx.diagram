@@ -7,12 +7,11 @@
       <Diagram DiagramId="3eca841dcb8746c6850e7f6c627be4a1" Name="Diagram1">
         <EntityTypeShape EntityType="EventsMasterModel.DonationRange" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="EventsMasterModel.UserDonation" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EventsMasterModel.Event" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="EventsMasterModel.Event" Width="1.5" PointX="0.75" PointY="3.625" />
         <AssociationConnector Association="EventsMasterModel.FK_DonationRange_Events" />
         <AssociationConnector Association="EventsMasterModel.FK_UserDonations_Events" />
-        <EntityTypeShape EntityType="EventsMasterModel.ViewedEvent" PointX="3" PointY="7" Width="1.5" />
+        <EntityTypeShape EntityType="EventsMasterModel.ViewedEvent" Width="1.5" PointX="3" PointY="7.125" />
         <AssociationConnector Association="EventsMasterModel.FK_ViewedEvents_Evens" />
-        <EntityTypeShape EntityType="EventsMasterModel.C__RefactorLog" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,6 +17,7 @@ namespace DonationEvents
         public int Id { get; set; }
         public Nullable<int> EventID { get; set; }
         public Nullable<bool> Viewed { get; set; }
+        public Nullable<System.Guid> userID { get; set; }
     
         public virtual Event Event { get; set; }
     }
