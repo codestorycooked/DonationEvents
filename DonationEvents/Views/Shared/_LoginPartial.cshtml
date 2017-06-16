@@ -27,7 +27,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-      <li style="padding-top:5px; padding-right:10px;">
+      @*<li style="padding-top:5px; padding-right:10px;">
         <button type="button" class="btn btn-danger"  aria-label="Left Align">
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Fundraise with us
         </button>
@@ -36,7 +36,7 @@ else
         <button type="button" class="btn btn-danger" aria-label="Left Align">
           <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Make a Donation
         </button>
-      </li>
+      </li>*@
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

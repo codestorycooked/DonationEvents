@@ -5,5 +5,31 @@
 
 
 <div class="row">
-   
+  <div id="divWidget1"></div>
+  <button onclick="getData()" value="hello">sdf</button>
+
 </div>
+@section Scripts{
+  <script src="http://localhost:49261/Scripts/pixellot.js"></script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (ev) {
+      var widget = new PixellotWidgetAPI({
+        container: "divWidget1",
+        key: "b568e9a490f6acac8fe28aa95f82a900b49fbb7087bb2bf5"
+      });
+      widget.init();
+    });
+    function getData() {
+      alert();
+      console.log($("tab"));
+      $("#vodTab").children().each(function (n, i) {
+        var id = this.id;
+        console.log(id);
+        // do something with it
+      });
+    }
+
+
+  </script>
+
+}

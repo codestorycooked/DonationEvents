@@ -3,15 +3,6 @@ c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerDa
 c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\bin\Debug\ServerData.pdb
 c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\obj\Debug\ServerData.dll
 c:\users\kunal-pc\documents\visual studio 2017\Projects\WebApplication1\ServerData\obj\Debug\ServerData.pdb
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\bin\Debug\ServerData.dacpac
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\bin\Debug\ServerData.dll
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\bin\Debug\ServerData.pdb
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\obj\Debug\ServerData.dll
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\obj\Debug\ServerData.pdb
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\obj\Debug\Model.xml
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\obj\Debug\refactor.xml
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\obj\Debug\postdeploy.sql
-C:\Users\kunal-pc\Documents\Visual Studio 2017\Projects\DonationEvents\ServerData\obj\Debug\predeploy.sql
 D:\sampleApps\DonationEvents\ServerData\bin\Debug\ServerData.dacpac
 D:\sampleApps\DonationEvents\ServerData\bin\Debug\ServerData.dll
 D:\sampleApps\DonationEvents\ServerData\bin\Debug\ServerData.pdb

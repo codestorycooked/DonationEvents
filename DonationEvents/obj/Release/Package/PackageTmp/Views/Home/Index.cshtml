@@ -2,30 +2,34 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+  <div id="divWidget1"></div>
+  <div id="divWidget2"></div>
+  <div id="divWidget3"></div>
+  <script type="text/javascript" src="https://club.pixellot.tv/widget/widgetAPI.js"></script>
+  <script type="text/javascript">
+       document.addEventListener("DOMContentLoaded", function(ev) {
+                var widget = new PixellotWidgetAPI({
+                       container: "divWidget1",
+                       key: "dbbe9f5315a7713793ba7c8d60d82bcf36f84bb390616f9f"
+                });
+                widget.init();
+         });
+         document.addEventListener("DOMContentLoaded", function(ev) {
+                var widget = new PixellotWidgetAPI({
+                       container: "divWidget2",
+                       key: "0404d0a579a077ca25c523e472b3f6c8ed7af71657675260"
+                });
+                widget.init();
+         });
+         document.addEventListener("DOMContentLoaded", function(ev) {
+                var widget = new PixellotWidgetAPI({
+                       container: "divWidget3",
+                       key: "46319b1ee4bdc00a1007777de4c308cc7950c7064536da1a"
+                });
+                widget.init();
+         });
+  </script>
 </div>

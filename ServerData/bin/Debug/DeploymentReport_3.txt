@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[Events].[DonatedValue] is being dropped, data loss could occur.
+
+** User actions
+     Alter
+       [dbo].[Events] (Table)
+     Create
+       [dbo].[ViewedEvents] (Table)
+       [dbo].[FK_ViewedEvents_Evens] (Foreign Key)
+
+** Supporting actions
+
+The column [dbo].[Events].[DonatedValue] is being dropped, data loss could occur.
+

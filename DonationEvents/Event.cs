@@ -19,16 +19,22 @@ namespace DonationEvents
         {
             this.DonationRanges = new HashSet<DonationRange>();
             this.UserDonations = new HashSet<UserDonation>();
+            this.ViewedEvents = new HashSet<ViewedEvent>();
         }
     
         public int Id { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
         public Nullable<System.DateTime> DateAdded { get; set; }
+        public string PixelLotID { get; set; }
+        public double Duration { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonationRange> DonationRanges { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserDonation> UserDonations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ViewedEvent> ViewedEvents { get; set; }
     }
 }
